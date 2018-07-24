@@ -20,6 +20,8 @@ var appleTimer;
 
 var score = -1;
 
+var canPress = true;
+
 var ITEM = {
 	EMPTY: 0,
 	SNAKE: 1,
@@ -29,9 +31,18 @@ var ITEM = {
 function gameOver()
 {
 	console.log('Game over!');
-	context.fillStyle = "#000000";
+	context.fillStyle = "black";
 	context.font = "50px Arial";
 	context.fillText("Game Over!", 100, 100);
+
+	context.strokeStyle = 'red';
+	context.lineWidth = squareSize*0.75;
+	context.beginPath();
+	context.moveTo(posX * squareSize - squareSize*0.5, posY * squareSize - squareSize*0.5);
+	context.lineTo(posX * squareSize + squareSize*1.5, posY * squareSize + squareSize*1.5);
+	context.moveTo(posX * squareSize + squareSize*1.5, posY * squareSize - squareSize*0.5);
+	context.lineTo(posX * squareSize - squareSize*0.5, posY * squareSize + squareSize*1.5);
+	context.stroke();
 
 	clearInterval(stepTimer);
 	clearInterval(appleTimer);
@@ -81,13 +92,15 @@ function step()
 		// Clear a square if needed.
 		if (length >= maxLength) {
 			var loc = pastLocations.shift();
-			drawSquare(loc[0], loc[1], "#FFFFFF");
+			drawSquare(loc[0], loc[1], "white");
 			locations[loc[0]][loc[1]] = ITEM.EMPTY;
 		}
 		else {
 			length ++;
 		}
 	}
+	
+	canPress = true;
 }
 
 function drawSquare(x, y, color = "#000000")
@@ -140,37 +153,44 @@ function main()
 
 function handleKeyDown(event)
 {
-	// console.log(event.key)
+	if (!canPress) {
+		return;
+	}
+
 	switch (event.key) {
 		case 'w':
 		case 'ArrowUp':
-		if (directionY == 0) {
+		if (directionY != 1) {
 			directionX = 0;
 			directionY = -1;
+			canPress = false;
 		}
 		break;
 		
 		case 's':
 		case 'ArrowDown':
-		if (directionY == 0) {
+		if (directionY != -1) {
 			directionX = 0;
 			directionY = 1;
+			canPress = false;
 		}
 		break;
 		
 		case 'a':
 		case 'ArrowLeft':
-		if (directionX == 0) {
+		if (directionX != 1) {
 			directionX = -1;
 			directionY = 0;
+			canPress = false;
 		}
 		break;
 		
 		case 'd':
 		case 'ArrowRight':
-		if (directionX == 0) {
+		if (directionX != -1) {
 			directionX = 1;
 			directionY = 0;
+			canPress = false;
 		}
 		break;
 	}
