@@ -1,5 +1,33 @@
+@keyframes colors {
+	0% {
+		border-color: red;
+	}
+	16% {
+		border-color: orange;
+	}
+	32% {
+		border-color: yellow;
+	}
+	48% {
+		border-color: green;
+	}
+	64% {
+		border-color: blue;
+	}
+	80% {
+		border-color: indigo;
+	}
+	100% {
+		border-color: violet;
+	}
+}
+
 canvas {
-	border: 5px solid black;
+	border: 10px solid red;
 	padding: 0px;
 	margin: 0px;
+	animation-name: colors;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
 }
