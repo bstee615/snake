@@ -27,7 +27,7 @@ canvas {
 	padding: 0px;
 	margin: 0px;
 	animation-name: colors;
-	animation-duration: 1s;
+	animation-duration: 3s;
 	animation-iteration-count: infinite;
 	animation-direction: alternate;
 }
