@@ -1,6 +1,9 @@
 <title>Snake</title>
 <link rel="shortcut icon" href="cover.jpg" type="image/x-icon">
 <link rel="stylesheet" href="css/style.css">
+<div id="pause" style="position: absolute; width: 100%; height: 100%; background-color: white; display: flex; justify-content: center; align-items: center;">
+    <button onclick="main(); document.getElementById('pause').remove();">Start</button>
+</div>
 <div style="height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center">
     <p id="scoreDisplay"></p>
     <canvas id="snakeCanvas"></canvas>

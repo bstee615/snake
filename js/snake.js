@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', main);
+// document.addEventListener('DOMContentLoaded', main);
 
 var canvas, context;
 var squareSize = 10;
